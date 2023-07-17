@@ -9,13 +9,13 @@ Fixed::Fixed ()
 
 Fixed::Fixed (const int val)
 {
-	(void)val;
+	value = val << bits;
 	std::cout<<"Int constructor called"<<std::endl;	
 }
 
 Fixed::Fixed (const float val)
 {
-	(void)val;
+	value = (int)roundf(val * (1 << bits));
 	std::cout<<"Float constructor called"<<std::endl;	
 }
 
@@ -28,7 +28,7 @@ Fixed::Fixed(const Fixed &copy)
 Fixed& Fixed::operator = (const Fixed &src)
 {
 	std::cout<<"Copy assignment operator called"<<std::endl;	
-	this->value = src.getRawBits();
+	this->value = src.value;
 	return *this;
 }
 
@@ -50,19 +50,21 @@ Fixed::~Fixed()
 
 float Fixed::toFloat(void) const
 {
+	float val;
 
-	return (0.0);
+	val = ((float)value / (1 << bits));
+	return (val);
 }
 
 int Fixed::toInt(void) const
 {
-
-	return (0);
+	
+	return (value >> bits);
 }
 
 std::ostream& operator<< (std::ostream& out, const Fixed& src)
 {
-	out<<src.getRawBits();
+	out<<src.toFloat();
 	return out;
 }
 

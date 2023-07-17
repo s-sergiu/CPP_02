@@ -3,6 +3,7 @@
 #define FIXED_HPP
 
 #include <iostream>
+#include <math.h>
 
 class Fixed
 {
