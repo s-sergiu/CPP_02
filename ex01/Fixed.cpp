@@ -29,13 +29,7 @@ Fixed& Fixed::operator = (const Fixed &src)
 {
 	std::cout<<"Copy assignment operator called"<<std::endl;	
 	this->value = src.getRawBits();
-	return this;
-}
-
-std::ostream& Fixed::operator<< (std::ostream& out, const Fixed& src)
-{
-	//out<<src.getRawBits();
-	return out;
+	return *this;
 }
 
 int	Fixed::getRawBits(void) const
@@ -65,3 +59,10 @@ int Fixed::toInt(void) const
 
 	return (0);
 }
+
+std::ostream& operator<< (std::ostream& out, const Fixed& src)
+{
+	out<<src.getRawBits();
+	return out;
+}
+
