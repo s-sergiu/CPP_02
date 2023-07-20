@@ -23,7 +23,6 @@ Fixed *Fixed::operator = (const Fixed &src)
 int	Fixed::getRawBits(void) const
 {
 	std::cout<<"getRawBits member function called"<<std::endl;	
-	std::cout<<(1<<8);
 	return (value);
 }
 
